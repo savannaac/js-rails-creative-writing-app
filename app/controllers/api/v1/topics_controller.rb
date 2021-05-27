@@ -3,7 +3,7 @@ class Api::V1::TopicsController < ApplicationController
 
   # GET /topics or /topics.json
   def index
-    @topics = Topic.all.order("created_at DESC")
+    @topics = Topic.all
 
     render json: @topics
   end
