@@ -1,2 +1,1 @@
-class Topic 
-    
+const app = new App()
