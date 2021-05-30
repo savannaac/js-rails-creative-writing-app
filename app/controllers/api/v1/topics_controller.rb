@@ -66,6 +66,6 @@ class Api::V1::TopicsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def topic_params
-      params.require(:topic).permit(:description)
+      params.require(:topic).permit(:description, :body)
     end
 end
