@@ -11,8 +11,20 @@ class TopicsAdapter {
         const topicCreateParams = {
             method: "POST",
             headers: {
-                "Content-Type"
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({body})
+        }
+        return fetch(this.baseUrl, topicCreateParams).then(res => res.json())
+    }
+
+    deleteTopic(topicId) {
+        const topicDeleteParams = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
             }
         }
+        return fetch(`${this.baseUrl}/${topicId}`, topicDeleteParams).then(res => res.json())
     }
 }
