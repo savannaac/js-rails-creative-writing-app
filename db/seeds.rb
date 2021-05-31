@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+topics = Topic.create([{ description: "Blue" }, { description: "suzuki peaches" }, { description: "sleep" }])
+Post.create(content: "Just like you.", topic: topics.first)
+
