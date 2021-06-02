@@ -1,8 +1,6 @@
 let topicsContainer = document.getElementById("topics")
-p = new Topic
-p.fetchAndLoadTopics
 
-class Topic {
+class Topics {
 
     constructor() {
         this.baseUrl = "http://localhost:3000/api/v1/topics"

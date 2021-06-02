@@ -1,5 +1,5 @@
 class App {
     constructor() {
-        this.topic = new Topic()
+        this.topics = new Topics()
     }
 }
