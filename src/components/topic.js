@@ -1,3 +1,7 @@
+let topicsContainer = document.getElementById("topics")
+p = new Topic
+p.fetchAndLoadTopics
+
 class Topic {
 
     constructor() {
@@ -23,7 +27,20 @@ class Topic {
         return fetch(this.baseUrl)
         .then(res => res.json())
         .then(data => {
-            renderTopics(data)
+            topicsHTML(data)
+            // topicsContainer.innerHTML = renderTopics(data)
         })
     }
+
+    topicsHTML(data) {
+        return data.map(renderTopics).join(" ")
+    }
+
+    renderTopics(topic) {
+        return topicsContainer.innerHTML = `<p>${topic.description}</p>`
+    }
+
+    // function renderAllLikes(likesArray) {
+    //     return likesArray.map(showLikes).join(' ')
+    //   }
 }
