@@ -1,15 +1,29 @@
 class Topic {
-    constructor(topicJSON) {
-        this.body = topicJSON.body
-        this.id = topicJSON.id
+
+    constructor() {
+        this.baseUrl = "http://localhost:3000/api/v1/topics"
+        this.topics = []
+        // this.adapter = new TopicsAdapter()
+        this.id = id
+        this.description = description;
+        this.card = this.createCard()
+        this.bindingsAndEventListeners()
+        this.fetchAndLoadTopics()
     }
-  
-    renderShow() {
-        return `<h3>${this.body}</h3>`
+
+    // bindingsAndEventListeners() {
+    //     this.topicForm = document.getElementById("topic-form")
+    //     this.topicInput = document.getElementById("topic-input")
+    //     this.topicNode = document.getElementById("topic-form-container")
+    //     this.topicForm.addEventListener("submit", this.addTopic.bind(this))
+    //     this.topicNode.addEventListener("click", this.deleteTopic.bind(this))
+    // }
+
+    fetchAndLoadTopics() {
+        return fetch(this.baseUrl)
+        .then(res => res.json())
+        .then(data => {
+            renderTopics(data)
+        })
     }
-  
-    render() {
-        return `<li data-noteid="${this.id}" data-props="${JSON.stringify(this)}" class="topic-element"><a class="show-link" href="#">${this.body}</a> <button data-action="edit-topic">edit</button> <i data-action="delete-topic" class="em em-scream_cat"></i></li>`
-    }
-  }
-  
+}
