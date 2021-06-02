@@ -1,10 +1,17 @@
 class TopicsAdapter {
     constructor() {
-        this.baseUrl = "http://localhost:3000/api/v1/topics"
+        // this.baseUrl = "https://hidden-woodland-29415.herokuapp.com//http://127.0.0.1:3000/api/v1/topics"
+        this.baseUrl = "http://127.0.0.1:3000/api/v1/topics"
     }
 
     getTopics() {
-        return fetch(this.baseUrl).then(res => res.json())
+        return fetch(this.baseUrl, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+        .then(res => res.json())
     }
 
     createTopic(body) {
@@ -19,12 +26,12 @@ class TopicsAdapter {
     }
 
     deleteTopic(topicId) {
-        const noteDeleteParams = {
+        const topicDeleteParams = {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }
         }
-        return fetch(`${this.baseUrl}/${topic.Id}`, topicDeleteParams).then(res => res.json())
+        return fetch(`${this.baseUrl}/${topicId}`, topicDeleteParams).then(res => res.json())
     }
 }
