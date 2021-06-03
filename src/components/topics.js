@@ -22,20 +22,13 @@ class Topics {
 
     fetchAndLoadTopics() {
         this.adapter.getTopics()
-        .then(topicsJSON => topicsJSON.forEach( topic => this.topics.push(new Topic(topic))))
-          .then(this.renderTopics())
-          .catch((error) => console.log(error))
+            .then(data => data.forEach(topic => {
+                const topicDiv = document.createElement("div")
+                topicDiv.innerHTML = `<h1>${topic.description}</h1>`
+                this.topicsContainer.appendChild(topicDiv)
+            }))
     }
 
-    topicsHTML() {
-        return this.topics.map( topic => topic.renderTopics() ).join(" ")
-    }
+    createTopic
 
-    renderTopics() {
-        return this.topicsContainer.innerHTML = `<p>${this.topicsHTML()}</p>`
-    }
-
-    // function renderAllLikes(likesArray) {
-    //     return likesArray.map(showLikes).join(' ')
-    //   }
 }

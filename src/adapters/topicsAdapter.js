@@ -12,15 +12,16 @@ class TopicsAdapter {
             }
         })
         .then(res => res.json())
+        // .then(data => console.log(data))
     }
 
-    createTopic(body) {
+    createTopic(description) {
         const topicCreateParams = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({body})
+            body: JSON.stringify({description})
         }
         return fetch(this.baseUrl, topicCreateParams).then(res => res.json())
     }

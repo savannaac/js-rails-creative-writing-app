@@ -1,18 +1,21 @@
 class Topic {
-    constructor(topicJSON) {
-        this.body = topicJSON.body
-        this.id = topicJSON.id
+
+    constructor(data) {
+        console.log(data)
+        // debugger;
+        this.description = data.description
+        this.id = data.id
     }
 
     renderHTML() {
-        return `<p>${this.body}</p>`
+        return `<p>${this.description}</p>`
     }
 
     render() {
-        return `<li data-noteid='${this.id}' data-props='${JSON.stringify(
+        return `<li data-topicid='${this.id}' data-props='${JSON.stringify(
           this
         )}' class='topic-element'><a class="show-link" href='#'>${
-          this.body
+          this.description
         }</a> <button data-action='edit-topic'>ddit</button> <i data-action='delete-topic' class="em em-scream_cat"></i></li>`
       }
 }
