@@ -16,7 +16,7 @@ class Topics {
         this.topicInput = document.getElementById("topic-input")
         this.topicNode = document.getElementById("topic-form-container")
         this.topicsContainer = document.getElementById("topics")
-        // this.topicForm.addEventListener("submit", this.addTopic.bind(this))
+        this.topicForm.addEventListener("submit", this.addTopic)
         // this.topicNode.addEventListener("click", this.deleteTopic.bind(this))
     }
 
@@ -29,6 +29,24 @@ class Topics {
             }))
     }
 
-    createTopic
+    addTopic = (e) => { 
+        e.preventDefault()
+        // this.topicInput.value 
+
+        this.adapter.createTopic(this.topicInput.value)
+            .then(data => {
+                console.log(data)
+                
+                if (data.description){
+                    // addTopicToDom
+                } else {
+                    alert(data.errors)
+                }
+            })
+        // console.dir(this.topicInput)
+        
+        // const 
+    }
+
 
 }
