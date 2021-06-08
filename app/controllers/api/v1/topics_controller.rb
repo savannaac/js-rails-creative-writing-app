@@ -5,7 +5,7 @@ class Api::V1::TopicsController < ApplicationController
   def index
     @topics = Topic.all
 
-    render json: @topics
+    render json: @topics, status: 200
   end
 
   # GET /topics/1 or /topics/1.json
@@ -25,15 +25,12 @@ class Api::V1::TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
 
-    respond_to do |format|
+    
       if @topic.save
-        format.html { redirect_to @topic, notice: "topic successfully created" }
-        format.json { render :show, status: :created, location: @topic }
+        render json: @topic
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+        render json: { errors:@topic.errors.full_messages.join(" ") }
       end
-    end
   end
 
   # PATCH/PUT /topics/1 or /topics/1.json
@@ -52,10 +49,6 @@ class Api::V1::TopicsController < ApplicationController
   # DELETE /topics/1 or /topics/1.json
   def destroy
     @topic.destroy
-    respond_to do |format|
-      format.html { redirect_to topics_url, notice: "topic successfully destroyed" }
-      format.json { head :no_content }
-    end
   end
 
   private
