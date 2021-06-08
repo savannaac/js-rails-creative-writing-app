@@ -26,6 +26,16 @@ class TopicsAdapter {
         return fetch(this.baseUrl, topicCreateParams).then(res => res.json())
     }
 
+    updateTopic(topicId) {
+        const topicUpdateParams = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        return fetch(`${this.baseUrl}/${topicId}`, topicUpdateParams).then(res => res.json())
+    }
+
     deleteTopic(topicId) {
         const topicDeleteParams = {
             method: "DELETE",
@@ -33,6 +43,6 @@ class TopicsAdapter {
                 "Content-Type": "application/json"
             }
         }
-        return fetch(`${this.baseUrl}/${topicId}`, topicDeleteParams).then(res => res.json())
+        fetch(`${this.baseUrl}/${topicId}`, topicDeleteParams)
     }
 }

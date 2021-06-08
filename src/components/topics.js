@@ -23,9 +23,7 @@ class Topics {
     fetchAndLoadTopics() {
         this.adapter.getTopics()
             .then(data => data.forEach(topic => {
-                const topicDiv = document.createElement("div")
-                topicDiv.innerHTML = `<h1>${topic.description}</h1>`
-                this.topicsContainer.appendChild(topicDiv)
+                this.displayTopic(topic)
             }))
     }
 
@@ -34,19 +32,36 @@ class Topics {
         // this.topicInput.value 
 
         this.adapter.createTopic(this.topicInput.value)
-            .then(data => {
-                console.log(data)
-                
-                if (data.description){
-                    // addTopicToDom
+            .then(topic => {
+                if (topic.description){
+                    this.displayTopic(topic)
+
+                    this.topicForm.reset()
                 } else {
-                    alert(data.errors)
+                    alert(topic.errors)
                 }
             })
-        // console.dir(this.topicInput)
-        
-        // const 
     }
+        // console.dir(this.topicInput) 
+    displayTopic = (topic) => {
+        const topicDiv = document.createElement("div")
+        const topicContent = document.createElement("h1")
+        topicContent.innerText = topic.description
+        const deleteButton = document.createElement("button")
+        deleteButton.innerText = "delete"
+        deleteButton.addEventListener("click", () => {
+            this.adapter.deleteTopic(topic.id)
+            topicDiv.remove()
+            alert(`"${topic.description}" deleted`)
+        })  
+        const editButton = document.createElement("button")
+        editButton.innerText = "update"
+            this.ad
 
-
-}
+        topicDiv.appendChild(topicContent)
+        topicDiv.appendChild(deleteButton)
+        topicDiv.appendChild(editButton)
+        this.topicsContainer.appendChild(topicDiv)
+    
+    }
+ }
