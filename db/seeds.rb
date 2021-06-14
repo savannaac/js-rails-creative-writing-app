@@ -7,6 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 topics = Topic.create([{ description: "Blue" }, { description: "suzuki peaches" }, { description: "sleep" }])
-Post.create([{content: "Just like you.", topic: topics.first}, {content: "best friends club forever", topic: topics.last}])
+Post.create([{content: "Just like you.", topic: topics.first}, {content: "I just want to $leep", topic: topics.last}])
 
 

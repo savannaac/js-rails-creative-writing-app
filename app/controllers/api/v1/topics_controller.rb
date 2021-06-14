@@ -25,7 +25,6 @@ class Api::V1::TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
 
-    
       if @topic.save
         render json: @topic
       else
@@ -35,13 +34,10 @@ class Api::V1::TopicsController < ApplicationController
 
   # PATCH/PUT /topics/1 or /topics/1.json
   def update
-    respond_to do |format|
       if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: "topic successfully updated" }
-        format.json { render :show, status: :ok, location: @topic }
+        render json: @topic
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+        render json: @topic.errors, status: :unprocessable_entity
       end
     end
   end
