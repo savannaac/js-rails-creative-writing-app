@@ -25,7 +25,7 @@ class Api::V1::PostsController < ApplicationController
         if post.save 
             render json: post
         else 
-            render json: topic.errors, status: :unprocessable_entity
+            render json: post.errors, status: :unprocessable_entity
         end
     end
 

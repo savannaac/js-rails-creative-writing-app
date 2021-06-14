@@ -39,7 +39,6 @@ class Api::V1::TopicsController < ApplicationController
       else
         render json: @topic.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # DELETE /topics/1 or /topics/1.json
