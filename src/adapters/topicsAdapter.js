@@ -1,7 +1,9 @@
 class TopicsAdapter {
+
     constructor() {
         // this.baseUrl = "https://hidden-woodland-29415.herokuapp.com//http://127.0.0.1:3000/api/v1/topics"
         this.baseUrl = "http://127.0.0.1:3000/api/v1/topics"
+        // this.postBaseUrl = "http://127.0.0.1:3000/api/v1/posts"
     }
 
     getTopics() {
@@ -26,15 +28,15 @@ class TopicsAdapter {
         return fetch(this.baseUrl, topicCreateParams).then(res => res.json())
     }
 
-    updateTopic(topicId) {
-        const topicUpdateParams = {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        return fetch(`${this.baseUrl}/${topicId}`, topicUpdateParams).then(res => res.json())
-    }
+    // updateTopic(topicId) {
+    //     const topicUpdateParams = {
+    //         method: "PATCH",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     }
+    //     return fetch(`${this.baseUrl}/${topicId}`, topicUpdateParams).then(res => res.json())
+    // }
 
     deleteTopic(topicId) {
         const topicDeleteParams = {

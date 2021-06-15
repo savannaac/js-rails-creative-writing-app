@@ -16,6 +16,6 @@ class Topic {
           this
         )}' class='topic-element'><a class="show-link" href='#'>${
           this.description
-        }</a> <button data-action='edit-topic'>ddit</button> <i data-action='delete-topic' class="em em-scream_cat"></i></li>`
+        }</a> <button data-action='edit-topic'>edit</button> <i data-action='delete-topic' class="em em-scream_cat"></i></li>`
       }
 }
