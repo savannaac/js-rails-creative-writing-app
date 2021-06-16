@@ -14,6 +14,6 @@ class PostAdapter {
             }
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(json => (json.data))
     }
 }

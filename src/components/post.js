@@ -12,8 +12,6 @@ class Post {
         this.adapter.getPosts()
             .then(data => data.forEach(post => {
                 this.displayPost(post)
-                // topicModel = new Topic(topic)
-                // topicModel.display
             }))
     }
 

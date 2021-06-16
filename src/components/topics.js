@@ -30,22 +30,23 @@ class Topics {
                 this.displayTopic(topic)
                 // make topicDiv 
 
-                if (topic.posts.length > 0) {
-                    this.fetchAndLoadPosts()
-                    // Topic.posts.forEach((post) => {
-                    //     this.displayPost(post)
-                    // })
-                }
+                // if (topic.posts.length > 0) {
+                //     this.fetchAndLoadPosts()
+                //     // Topic.posts.forEach((post) => {
+                //     //     this.displayPost(post)
+                //     // })
+                // }
                 // topicModel = new Topic(topic)
                 // topicModel.display
             }))
     }
 
-    fetchAndLoadPosts() {
-        Topic.posts.forEach(post => {
-            this.displayPost(post)
-        })
-    }
+    // fetchAndLoadPosts() {
+    //     Topic.posts.forEach(post => {
+    //         console.log(post)
+    //         // this.displayPost(post)
+    //     })
+    // }
 
     addTopic = (e) => { 
         e.preventDefault()
@@ -91,33 +92,33 @@ class Topics {
     
     }
 
-    getPosts() {
-        return fetch(this.baseUrl, {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
-        .then(res => res.json())
-        .then(data => data.forEach(post => {
-            console.log(post)
-            this.displayPost(post)
-        }))
-    }
+    // getPosts() {
+    //     return fetch(this.baseUrl, {
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => data.forEach(post => {
+    //         console.log(post)
+    //         this.displayPost(post)
+    //     }))
+    // }
 
-    displayPost = (post) => {
-        const postDiv = document.createElement("div")
-        const postContent = document.createElement("h2")
-        postContent.innerText = post.content 
-        // postContent.setAttribute("contenteditable", "true")
-        // const postDeleteButton = document.createElement("button")
-        // postDeleteButton.innerText = "delete"
-        // postDeleteButton.addEventListener("click", () {
-        //     this.adapter.
-        // })
-        postDiv.appendChild(postContent)
-        this.postContainer.appendChild(postDiv)
-    }
+    // displayPost = (post) => {
+    //     const postDiv = document.createElement("div")
+    //     const postContent = document.createElement("h2")
+    //     postContent.innerText = post.content 
+    //     // postContent.setAttribute("contenteditable", "true")
+    //     // const postDeleteButton = document.createElement("button")
+    //     // postDeleteButton.innerText = "delete"
+    //     // postDeleteButton.addEventListener("click", () {
+    //     //     this.adapter.
+    //     // })
+    //     postDiv.appendChild(postContent)
+    //     this.postContainer.appendChild(postDiv)
+    // }
 }
 //
 // checkforPosts(){
