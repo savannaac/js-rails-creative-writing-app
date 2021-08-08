@@ -6,6 +6,7 @@ class Topics {
         this.adapter = new TopicsAdapter();
         this.id = id;
         this.description = description;
+        // this.post = post
         this.bindingsAndEventListeners();
         this.fetchAndLoadTopics();
     }
@@ -27,6 +28,7 @@ class Topics {
             .then(data => data.forEach(topic => {
                 // console.log(data)
                 this.displayTopic(topic)
+                this.topics.push(new Post(topic))
                 // make topicDiv 
 
                 // if (topic.posts.length > 0) {
@@ -88,7 +90,14 @@ class Topics {
         topicDiv.appendChild(deleteButton)
         // topicDiv.appendChild(editButton)
         this.topicsContainer.appendChild(topicDiv)
-    
+    }
+
+    createPosts() {
+        let postArray = []
+        for (let post of posts) {
+            postArray.push(post.content)
+        }
+        return postArray
     }
 }
 //

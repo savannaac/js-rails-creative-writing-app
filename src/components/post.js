@@ -1,31 +1,33 @@
 class Post {
      
-    constructor() {
-        this.posts = []
-        this.adapter = new PostAdapter() 
+    constructor(id, topic_id, content) {
+        this.posts = [];
+        this.id = id;
+        this.topic_id = topic_id;
+        this.content = content;
+        // this.adapter = new PostAdapter() 
         // this.postBindingsAndEventListeners()
-        this.fetchAndLoadPosts()
-        this.postContainer = document.getElementById("posts")
+        // this.fetchAndLoadPosts()
+        this.fetchPosts();
+        this.postContainer = document.getElementById("posts");
     }
 
-    fetchAndLoadPosts() {
-        this.adapter.getPosts()
-            .then(data => data.forEach(post => {
-                this.displayPost(post)
-            }))
+    fetchPosts() {
+        return fetch("http://127.0.0.1:3000/api/v1/posts")
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                renderPosts()
+            })
     }
 
-    displayPost = (post) => {
+    renderPosts(posts) {
         const postDiv = document.createElement("div")
-        const postContent = document.createElement("h2")
-        postContent.innerText = post.content 
-        // postContent.setAttribute("contenteditable", "true")
-        // const postDeleteButton = document.createElement("button")
-        // postDeleteButton.innerText = "delete"
-        // postDeleteButton.addEventListener("click", () {
-        //     this.adapter.
-        // })
-        postDiv.appendChild(postContent)
-        this.postContainer.appendChild(postDiv)
+        posts.forEach(post => {
+            const postContent = document.createElement("p")
+            postContent.innerHTML = post.content
+            postDiv.appendChild(p)
+            this.postContainer.appendChild(postDiv)
+        })
     }
 }
