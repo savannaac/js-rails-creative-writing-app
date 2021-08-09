@@ -16,9 +16,6 @@ class Topics {
         this.topicInput = document.getElementById("topic-input");
         this.topicNode = document.getElementById("topic-form-container");
         this.topicsContainer = document.getElementById("topics");
-
-        this.postContainer = document.getElementById("posts");
-
         this.topicForm.addEventListener("submit", this.addTopic);
         // this.topicNode.addEventListener("click", this.deleteTopic.bind(this))
     }
@@ -90,7 +87,7 @@ class Topics {
         this.topicsContainer.appendChild(topicDiv)
     }
 
-    createPosts() {
+    createPosts(posts) {
         let postArray = []
         for (let post of posts) {
             postArray.push(post.content)

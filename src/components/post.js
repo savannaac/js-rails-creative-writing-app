@@ -1,14 +1,18 @@
 class Post {
      
-    constructor(id, topic_id, content) {
+    constructor(data) {
         this.posts = [];
-        this.id = id;
-        this.topic_id = topic_id;
-        this.content = content;
+        this.id = data.id;
+        this.topic_id = data.topic_id;
+        this.content = data.content;
         // this.adapter = new PostAdapter() 
         // this.postBindingsAndEventListeners()
         // this.fetchAndLoadPosts()
+        this.nodesAndEventListeners();
         this.fetchPosts();
+    }
+
+    nodesAndEventListeners() {
         this.postContainer = document.getElementById("posts");
     }
 
@@ -20,19 +24,18 @@ class Post {
             }
         })
         .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-            renderPosts()
-        })
+        .then(data => data.forEach(post => {
+            console.log(post)
+            this.renderPosts(post)
+        }))
     }
 
-    renderPosts(posts) {
+    renderPosts = (post) => {
         const postDiv = document.createElement("div")
-        posts.forEach(post => {
-            const postContent = document.createElement("p")
-            postContent.innerHTML = post.content
-            postDiv.appendChild(p)
-            this.postContainer.appendChild(postDiv)
-        })
+        const postContent = document.createElement("p")
+        postContent.innerText = post.content
+        
+        postDiv.appendChild(postContent)
+        this.postContainer.appendChild(postDiv)
     }
 }
