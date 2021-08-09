@@ -51,13 +51,11 @@ class Topics {
 
     addTopic = (e) => { 
         e.preventDefault()
-        // this.topicInput.value 
 
         this.adapter.createTopic(this.topicInput.value)
             .then(topic => {
                 if (topic.description) {
                     this.displayTopic(topic)
-
                     this.topicForm.reset()
                 } else {
                     alert(topic.errors)

@@ -13,12 +13,17 @@ class Post {
     }
 
     fetchPosts() {
-        return fetch("http://127.0.0.1:3000/api/v1/posts")
-            .then(resp => resp.json())
-            .then(data => {
-                console.log(data)
-                renderPosts()
-            })
+        return fetch("http://127.0.0.1:3000/api/v1/posts", {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            renderPosts()
+        })
     }
 
     renderPosts(posts) {
