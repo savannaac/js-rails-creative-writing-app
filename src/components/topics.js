@@ -6,7 +6,6 @@ class Topics {
         this.adapter = new TopicsAdapter();
         this.id = id;
         this.description = description;
-        // this.post = post
         this.bindingsAndEventListeners();
         this.fetchAndLoadTopics();
     }
@@ -71,7 +70,31 @@ class Topics {
             this.adapter.deleteTopic(topic.id)
             topicDiv.remove()
             alert(`"${topic.description}" deleted`)
-        })  
+        })
+        const postForm = document.createElement("form")
+        const postInput = document.createElement("input")
+        const postSubmitButton = document.createElement("button")
+        postSubmitButton.innerText = "create post"
+        postSubtmitButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            const postCreateParams = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify()
+            }
+            return fetch("http://127.0.0.1:3000/api/v1/posts", postCreateParams).then(res => res.json())
+        })
+        postForm.appendChild(postInput)
+        postForm.appendChild(postSubmitButton)
+
+
+        const postsDiv = document.createElement("div")
+        topic.posts.forEach((post) => {
+            const postDiv = new Post(post).render();
+            postsDiv.appendChild(postDiv)
+        });
 
         // const editButton = document.createElement("button")
         // editButton.innerText = "update"
@@ -83,6 +106,8 @@ class Topics {
 
         topicDiv.appendChild(topicContent)
         topicDiv.appendChild(deleteButton)
+        topicDiv.appendChild(postsDiv)
+        topicDiv.appendChild(postForm)
         // topicDiv.appendChild(editButton)
         this.topicsContainer.appendChild(topicDiv)
     }
