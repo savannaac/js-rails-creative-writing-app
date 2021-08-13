@@ -38,13 +38,6 @@ class Topics {
             }))
     }
 
-    // fetchAndLoadPosts() {
-    //     Topic.posts.forEach(post => {
-    //         console.log(post)
-    //         // this.displayPost(post)
-    //     })
-    // }
-
     addTopic = (e) => { 
         e.preventDefault()
 
@@ -75,16 +68,34 @@ class Topics {
         const postInput = document.createElement("input")
         const postSubmitButton = document.createElement("button")
         postSubmitButton.innerText = "create post"
-        postSubtmitButton.addEventListener("click", function(e) {
+        postSubtmitButton.addEventListener("submit", (e) => {
             e.preventDefault();
-            const postCreateParams = {
+            const newPost = e.target
+            const newPostContent = newPost.content.value
+            const newPostObject = { content: newPostContent };
+
+            fetch("http://127.0.0.1:3000/api/v1/posts", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 },
-                body: JSON.stringify()
-            }
-            return fetch("http://127.0.0.1:3000/api/v1/posts", postCreateParams).then(res => res.json())
+                body: JSON.stringify(newPostObject)
+            })
+            .then(res => res.json())
+            .then(post => {
+                const newPostInstance = new Post(post);
+                this.topics.push(post)
+            })
+            // const postCreateParams = {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "Accept": "application/json"
+            //     },
+            //     body: JSON.stringify()
+            // }
+            // return fetch("http://127.0.0.1:3000/api/v1/posts", postCreateParams).then(res => res.json())
         })
         postForm.appendChild(postInput)
         postForm.appendChild(postSubmitButton)
