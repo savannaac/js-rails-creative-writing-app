@@ -7,13 +7,13 @@ class Post {
         // this.adapter = new PostAdapter() 
         // this.postBindingsAndEventListeners()
         // this.fetchAndLoadPosts()
-        this.nodesAndEventListeners();
+        // this.nodesAndEventListeners();
         this.fetchPosts();
     }
 
-    nodesAndEventListeners() {
-        this.postContainer = document.getElementById("posts");
-    }
+    // nodesAndEventListeners() {
+    //     this.postContainer = document.getElementById("posts");
+    // }
 
     fetchPosts() {
         return fetch("http://127.0.0.1:3000/api/v1/posts", {
@@ -24,7 +24,7 @@ class Post {
         })
         .then(resp => resp.json())
         .then(data => data.forEach(post => {
-            console.log(post)
+            // console.log(post)
             this.render(post)
         }))
     }

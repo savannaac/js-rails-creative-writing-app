@@ -58,21 +58,24 @@ class Topics {
         topicContent.innerText = topic.description
         // topicContent.setAttribute("contenteditable", "true")
         const deleteButton = document.createElement("button")
-        deleteButton.innerText = "delete"
+        deleteButton.innerText = "delete topic"
         deleteButton.addEventListener("click", () => {
             this.adapter.deleteTopic(topic.id)
             topicDiv.remove()
             alert(`"${topic.description}" deleted`)
         })
+        // deleteButton.appendChild(document.createElement("br"))
         const postForm = document.createElement("form")
+        postForm.id = "post-form"
         const postInput = document.createElement("input")
+        postInput.id = "post-input"
         const postSubmitButton = document.createElement("button")
         postSubmitButton.innerText = "create post"
-        postSubtmitButton.addEventListener("submit", (e) => {
+        postSubmitButton.addEventListener("click", (e) => {
             e.preventDefault();
-            const newPost = e.target
-            const newPostContent = newPost.content.value
-            const newPostObject = { content: newPostContent };
+            //this.createPost()
+            const newPost = document.getElementById("post-input").value
+            const post = { content: newPost}
 
             fetch("http://127.0.0.1:3000/api/v1/posts", {
                 method: "POST",
@@ -80,23 +83,15 @@ class Topics {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify(newPostObject)
+                body: JSON.stringify(post)
             })
             .then(res => res.json())
-            .then(post => {
-                const newPostInstance = new Post(post);
-                this.topics.push(post)
+            .then(data => {
+                console.log(data)
+                // addPost()
             })
-            // const postCreateParams = {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         "Accept": "application/json"
-            //     },
-            //     body: JSON.stringify()
-            // }
-            // return fetch("http://127.0.0.1:3000/api/v1/posts", postCreateParams).then(res => res.json())
         })
+        
         postForm.appendChild(postInput)
         postForm.appendChild(postSubmitButton)
 
@@ -123,13 +118,20 @@ class Topics {
         this.topicsContainer.appendChild(topicDiv)
     }
 
-    createPosts(posts) {
-        let postArray = []
-        for (let post of posts) {
-            postArray.push(post.content)
-        }
-        return postArray
+    addPost() {
+
     }
+    // createPost(content) {
+    //     const postParams = {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         },
+    //         body: JSON.stringify({ content })
+    //     }
+    //     return fetch("http://127.0.0.1:3000/api/v1/posts", postParams).then(res => res.json()).then(data => console.log(data))
+    // }
 }
 //
 // checkforPosts(){
