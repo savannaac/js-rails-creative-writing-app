@@ -11,9 +11,13 @@ class Api::V1::PostsController < ApplicationController
     end
 
     def create
-        post = Post.create(post_params)
+        post = Post.new(post_params)
 
-        render json: post
+        if post.save
+            render json: post
+        else
+            render json: { errors:post.errors.full_messages.join(" ") }
+        end
     end
 
     def edit

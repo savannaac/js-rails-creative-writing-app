@@ -6,6 +6,7 @@ class Api::V1::TopicsController < ApplicationController
     @topics = Topic.all
 
     render json: @topics, status: 200
+    # render json: TopicSerializer.new(topic), status: 200
   end
 
   # GET /topics/1 or /topics/1.json
