@@ -73,9 +73,12 @@ class Topics {
         postSubmitButton.innerText = "create post"
         postSubmitButton.addEventListener("click", (e) => {
             e.preventDefault();
-            //this.createPost()
-            const newPost = document.getElementById("post-input").value
-            const post = { content: newPost}
+            
+            const postInput = document.getElementById("post-input").value
+            const topicId = e.target.dataset.topicId
+            const post = { 
+                topic_id: topicId,
+                content: postInput}
 
             fetch("http://127.0.0.1:3000/api/v1/posts", {
                 method: "POST",
@@ -86,9 +89,17 @@ class Topics {
                 body: JSON.stringify(post)
             })
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                // addPost()
+            // .then(data => {
+            //     console.log(data)
+            // })
+            .then(post => {
+                console.log(post)
+                if (post.content) {
+                    const postForm = document.getElementById("post-form")
+                    postForm.reset()
+                } else {
+                    alert(post.errors)
+                }
             })
         })
         
@@ -117,21 +128,6 @@ class Topics {
         // topicDiv.appendChild(editButton)
         this.topicsContainer.appendChild(topicDiv)
     }
-
-    addPost() {
-
-    }
-    // createPost(content) {
-    //     const postParams = {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         },
-    //         body: JSON.stringify({ content })
-    //     }
-    //     return fetch("http://127.0.0.1:3000/api/v1/posts", postParams).then(res => res.json()).then(data => console.log(data))
-    // }
 }
 //
 // checkforPosts(){

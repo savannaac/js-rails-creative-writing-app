@@ -4,11 +4,9 @@ class Post {
         this.id = post.id;
         this.topic_id = post.topic_id;
         this.content = post.content;
-        // this.adapter = new PostAdapter() 
-        // this.postBindingsAndEventListeners()
-        // this.fetchAndLoadPosts()
         // this.nodesAndEventListeners();
         this.fetchPosts();
+        // this.createPost();
     }
 
     // nodesAndEventListeners() {
@@ -30,14 +28,22 @@ class Post {
     }
 
     // createPost(content) {
-    //     const postCreateParams = {
+    //     content.preventDefault();
+    //     const post = { content: document.getElementById("post-input").value }
+
+    //     fetch("http://127.0.0.1:3000/api/v1/posts"), {
     //         method: "POST",
     //         headers: {
-    //             "Content-Type": "application/json"
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
     //         },
-    //         body: JSON.stringify({ content })
+    //         body: JSON.stringify(post)
     //     }
-    //     return fetch("http://127.0.0.1:3000/api/v1/posts", postCreateParams).then(res => res.json())
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data)
+    //         data.render()
+    //     })
     // } 
 
     render() {
