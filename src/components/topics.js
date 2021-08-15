@@ -1,7 +1,6 @@
 class Topics {
 
     constructor(id, description) {
-        this.baseUrl = "http://127.0.0.1:3000/api/v1/posts";
         this.topics = [];
         this.adapter = new TopicsAdapter();
         this.id = id;
@@ -57,6 +56,7 @@ class Topics {
         const topicContent = document.createElement("h1")
         topicContent.innerText = topic.description
         // topicContent.setAttribute("contenteditable", "true")
+
         const deleteButton = document.createElement("button")
         deleteButton.innerText = "delete topic"
         deleteButton.addEventListener("click", () => {
@@ -65,6 +65,13 @@ class Topics {
             alert(`"${topic.description}" deleted`)
         })
         // deleteButton.appendChild(document.createElement("br"))
+        
+         const postsDiv = document.createElement("div")
+        topic.posts.forEach((post) => {
+            const postDiv = new Post(post).render();
+            postsDiv.appendChild(postDiv)
+        });
+
         const postForm = document.createElement("form")
         postForm.id = "post-form"
         const postInput = document.createElement("input")
@@ -73,6 +80,14 @@ class Topics {
         postSubmitButton.innerText = "create post"
         postSubmitButton.addEventListener("click", (e) => {
             e.preventDefault();
+            // const postInputValue = document.getElementById("post-input").value
+            // this.topics.push(new Post(postInputValue).createPost())
+                // if (post.content) {
+                //     const postForm = document.getElementById("post-form")
+                //     postForm.reset()
+                // } else {
+                //     alert(post.errors)
+                // }
             
             const postInput = document.getElementById("post-input").value
             const topicId = e.target.dataset.topicId
@@ -94,6 +109,7 @@ class Topics {
             // })
             .then(post => {
                 console.log(post)
+                this.topics.push(new Post(post))
                 if (post.content) {
                     const postForm = document.getElementById("post-form")
                     postForm.reset()
@@ -105,13 +121,6 @@ class Topics {
         
         postForm.appendChild(postInput)
         postForm.appendChild(postSubmitButton)
-
-
-        const postsDiv = document.createElement("div")
-        topic.posts.forEach((post) => {
-            const postDiv = new Post(post).render();
-            postsDiv.appendChild(postDiv)
-        });
 
         // const editButton = document.createElement("button")
         // editButton.innerText = "update"

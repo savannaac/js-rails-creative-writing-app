@@ -1,7 +1,6 @@
 class TopicsAdapter {
 
     constructor() {
-        // this.baseUrl = "https://hidden-woodland-29415.herokuapp.com//http://127.0.0.1:3000/api/v1/topics"
         this.baseUrl = "http://127.0.0.1:3000/api/v1/topics"
         // this.postBaseUrl = "http://127.0.0.1:3000/api/v1/posts"
     }
