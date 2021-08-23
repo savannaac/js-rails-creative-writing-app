@@ -1,6 +1,7 @@
 class Post {
      
     constructor(post) {
+        
         this.id = post.id;
         this.topic_id = post.topic_id;
         this.content = post.content;

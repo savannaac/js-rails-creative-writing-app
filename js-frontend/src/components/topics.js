@@ -71,11 +71,11 @@ class Topics {
             const postDiv = new Post(post).render();
             postsDiv.appendChild(postDiv)
         });
-
+        const topicId = topic.id
         const postForm = document.createElement("form")
         postForm.id = "post-form"
         const postInput = document.createElement("input")
-        postInput.id = "post-input"
+        postInput.id = `post-input-${topicId}`
         const postSubmitButton = document.createElement("button")
         postSubmitButton.innerText = "create post"
         postSubmitButton.addEventListener("click", (e) => {
@@ -88,13 +88,13 @@ class Topics {
                 // } else {
                 //     alert(post.errors)
                 // }
-            
-            const postInput = document.getElementById("post-input").value
-            const topicId = e.target.dataset.topicId
+            const postInput = document.getElementById(`post-input-${topicId}`).value
+            // const topicId = e.target.dataset.topicId
             const post = { 
                 topic_id: topicId,
                 content: postInput}
 
+            console.log(post)
             fetch("http://127.0.0.1:3000/api/v1/posts", {
                 method: "POST",
                 headers: {
@@ -104,9 +104,9 @@ class Topics {
                 body: JSON.stringify(post)
             })
             .then(res => res.json())
-            // .then(data => {
-            //     console.log(data)
-            // })
+            .then(data => {
+                console.log(data)
+            })
             .then(post => {
                 console.log(post)
                 this.topics.push(new Post(post))

@@ -11,7 +11,9 @@ class Api::V1::PostsController < ApplicationController
     end
 
     def create
-        post = Post.new(post_params)
+        # puts params.inspect
+        topic = Topic.find(params[:topic_id])
+        post = Post.new(topic_id: topic.id, content: params[:content])
 
         if post.save
             render json: post
