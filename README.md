@@ -38,6 +38,7 @@ When the page is up and running,
 
 1. Create a short topic(s) at the top of the page (20 character limit) 
 2. Then, create a slightly less short post under any topic. 
+
 Topics can have multiple posts, but each post has a 175 character limit. 
 
 ## Contributing
