@@ -80,14 +80,7 @@ class Topics {
         postSubmitButton.innerText = "create post"
         postSubmitButton.addEventListener("click", (e) => {
             e.preventDefault();
-            // const postInputValue = document.getElementById("post-input").value
-            // this.topics.push(new Post(postInputValue).createPost())
-                // if (post.content) {
-                //     const postForm = document.getElementById("post-form")
-                //     postForm.reset()
-                // } else {
-                //     alert(post.errors)
-                // }
+        
             const postInput = document.getElementById(`post-input-${topicId}`).value
             // const topicId = e.target.dataset.topicId
             const post = { 
