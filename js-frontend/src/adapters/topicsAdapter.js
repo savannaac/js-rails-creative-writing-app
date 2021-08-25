@@ -2,7 +2,6 @@ class TopicsAdapter {
 
     constructor() {
         this.baseUrl = "http://127.0.0.1:3000/api/v1/topics"
-        // this.postBaseUrl = "http://127.0.0.1:3000/api/v1/posts"
     }
 
     getTopics() {

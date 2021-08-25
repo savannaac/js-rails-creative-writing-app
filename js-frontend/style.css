@@ -1,0 +1,27 @@
+body {
+    background-color: #FFF;
+}
+
+h1 {
+    font-family: "futura", sans-serif;
+    margin-top: 75px;
+    text-align: center;
+}
+
+h2 {
+    font-family: "futura", sans-serif;
+    font-size: 35px;
+    font-style: italic;
+    text-align: left;
+}
+
+p {
+    font-family: "futura", sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    text-align: left;
+}
+
+#topic-form-container {
+    text-align: center;
+}

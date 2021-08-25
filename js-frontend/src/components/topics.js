@@ -24,16 +24,6 @@ class Topics {
                 // console.log(data)
                 this.displayTopic(topic)
                 this.topics.push(new Post(topic))
-                // make topicDiv 
-
-                // if (topic.posts.length > 0) {
-                //     this.fetchAndLoadPosts()
-                //     // Topic.posts.forEach((post) => {
-                //     //     this.displayPost(post)
-                //     // })
-                // }
-                // topicModel = new Topic(topic)
-                // topicModel.display
             }))
     }
 
@@ -50,27 +40,32 @@ class Topics {
                 }
             })
     }
-        // console.dir(this.topicInput) 
+        // console.dir(this.topicInput)  
+
     displayTopic = (topic) => {
         const topicDiv = document.createElement("div")
-        const topicContent = document.createElement("h1")
+        topicDiv.className = "topic"
+        const topicContent = document.createElement("h2")
         topicContent.innerText = topic.description
         // topicContent.setAttribute("contenteditable", "true")
 
-        const deleteButton = document.createElement("button")
-        deleteButton.innerText = "delete topic"
-        deleteButton.addEventListener("click", () => {
+        const topicDeleteButton = document.createElement("button")
+        topicDeleteButton.innerText = "delete topic"
+        topicDeleteButton.addEventListener("click", () => {
             this.adapter.deleteTopic(topic.id)
             topicDiv.remove()
             alert(`"${topic.description}" deleted`)
         })
-        // deleteButton.appendChild(document.createElement("br"))
+        //// deleteButton.appendChild(document.createElement("br"))
+
+        // handles each topic's post(s)
         
-         const postsDiv = document.createElement("div")
+        const postsDiv = document.createElement("div")
         topic.posts.forEach((post) => {
             const postDiv = new Post(post).render();
             postsDiv.appendChild(postDiv)
         });
+
         const topicId = topic.id
         const postForm = document.createElement("form")
         postForm.id = "post-form"
@@ -82,7 +77,7 @@ class Topics {
             e.preventDefault();
         
             const postInput = document.getElementById(`post-input-${topicId}`).value
-            // const topicId = e.target.dataset.topicId
+            
             const post = { 
                 topic_id: topicId,
                 content: postInput}
@@ -124,12 +119,12 @@ class Topics {
         // })
 
         topicDiv.appendChild(topicContent)
-        topicDiv.appendChild(deleteButton)
+        topicDiv.appendChild(topicDeleteButton)
         topicDiv.appendChild(postsDiv)
         topicDiv.appendChild(postForm)
         // topicDiv.appendChild(editButton)
         this.topicsContainer.appendChild(topicDiv)
-    }
+    } 
 }
 //
 // checkforPosts(){
