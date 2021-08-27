@@ -54,11 +54,11 @@ class Post {
     // } 
 
     render() {
-        const postDiv = document.createElement("div")
-        const postContent = document.createElement("p")
+        const postDiv = document.createElement("div");
+        const postContent = document.createElement("p");
         postContent.innerText = this.content
 
         postDiv.appendChild(postContent)
-        return postDiv
+        return postDiv;
     }
 }

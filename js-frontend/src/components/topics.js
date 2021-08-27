@@ -93,10 +93,7 @@ class Topics {
                 body: JSON.stringify(post)
             })
             .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                return data;
-            })
+            .then(data => { return data })
             .then(post => {
                 // console.log(post)
                 this.topics.push(new Post(post))
@@ -113,7 +110,6 @@ class Topics {
                     const postForm = document.getElementById(`post-form-${topicId}`)
                     // console.log(postForm)
                     postForm.reset()
-
                 } else {
                     alert(post.errors)
                 }

@@ -3,8 +3,12 @@ body {
 }
 
 h1 {
+    color: #A04000;
     font-family: "futura", sans-serif;
+    font-size: 40px;
+    /* font-style: italic; */
     margin-top: 75px;
+    margin-bottom: -2px;
     text-align: center;
 }
 
@@ -22,6 +26,27 @@ p {
     text-align: left;
 }
 
+input[type=text] {
+    border: 1px solid #99A3A4;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #000;
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 12.5px;
+    width: 275px;
+}
+
+#topic-submit-button {
+    color: #4D5656;
+    background-color: #F4F6F6;
+    border-radius: 4px;
+    padding: 3px 3px;
+}
+
 #topic-form-container {
+    border-bottom: 2px solid #FF5733;
     text-align: center;
 }
