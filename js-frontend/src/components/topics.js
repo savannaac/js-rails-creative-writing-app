@@ -43,6 +43,7 @@ class Topics {
         // console.dir(this.topicInput)  
 
     displayTopic = (topic) => {
+        const topicId = topic.id
         const topicDiv = document.createElement("div")
         topicDiv.className = "topic"
         const topicContent = document.createElement("h2")
@@ -61,14 +62,14 @@ class Topics {
         // handles each topic's post(s)
         
         const postsDiv = document.createElement("div")
+        postsDiv.id = `posts-div-${topicId}`
         topic.posts.forEach((post) => {
             const postDiv = new Post(post).render();
             postsDiv.appendChild(postDiv)
         });
 
-        const topicId = topic.id
         const postForm = document.createElement("form")
-        postForm.id = "post-form"
+        postForm.id = `post-form-${topicId}`
         const postInput = document.createElement("input")
         postInput.id = `post-input-${topicId}`
         const postSubmitButton = document.createElement("button")
@@ -82,7 +83,7 @@ class Topics {
                 topic_id: topicId,
                 content: postInput}
 
-            console.log(post)
+            // console.log(post)
             fetch("http://127.0.0.1:3000/api/v1/posts", {
                 method: "POST",
                 headers: {
@@ -93,14 +94,26 @@ class Topics {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
+                return data;
             })
             .then(post => {
-                console.log(post)
+                // console.log(post)
                 this.topics.push(new Post(post))
                 if (post.content) {
-                    const postForm = document.getElementById("post-form")
+                    // debugger;
+                    // console.log(post.content)
+                    const postsDiv = document.getElementById(`posts-div-${topicId}`)
+                    // console.log(postsDiv)
+                    const postText = document.createElement("p")
+                    postText.innerText = post.content
+
+                    postsDiv.appendChild(postText)
+
+                    const postForm = document.getElementById(`post-form-${topicId}`)
+                    // console.log(postForm)
                     postForm.reset()
+
                 } else {
                     alert(post.errors)
                 }
